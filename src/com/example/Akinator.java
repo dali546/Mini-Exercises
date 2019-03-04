@@ -91,20 +91,15 @@ public class Akinator {
     private static void gameOne(Scanner scanner) {
         int i = new Random().nextInt(100);
         print("Ok I've got a number. Guess:");
-        String response = scanner.next();
-        int playerGuess = getPlayerGuess(scanner, response);
+        int playerGuess;
 
-        while (playerGuess != i) {
-            if (playerGuess > i) {
-                print(TOO_HIGH);
-                response = scanner.next();
-                playerGuess = getPlayerGuess(scanner, response);
-            } else {
-                print(TOO_LOW);
-                response = scanner.next();
-                playerGuess = getPlayerGuess(scanner, response);
-            }
-        }
+        do {
+            String response = scanner.next();
+            playerGuess= getPlayerGuess(scanner, response);
+            print(playerGuess > i ? TOO_HIGH : TOO_LOW);
+        } while (playerGuess!=i);
+
+
         print("You Won. Go You!");
     }
 
